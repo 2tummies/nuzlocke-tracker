@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS regions;
 
 CREATE TABLE regions (
         region_id SMALLINT PRIMARY KEY,
-        region_name VARCHAR(15) UNIQUE NOT NULL
+        region_name TEXT UNIQUE NOT NULL
 );
 
 CREATE TABLE versions (
