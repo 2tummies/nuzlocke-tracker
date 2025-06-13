@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'nuzlocke_tracker',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
