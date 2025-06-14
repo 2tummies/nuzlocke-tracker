@@ -1,4 +1,7 @@
-Activate Python Virtual Environment:
+Create Python virtual environment named venv
+    python -m venv venv
+
+Activate Python Virtual Environment
 -Powershell
     venv/Scripts/Activate
 
