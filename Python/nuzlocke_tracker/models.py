@@ -1,5 +1,7 @@
 from django.db import models
 
+from .sql import regions_sql
+
 # Database tables
 class Region(models.Model):
     region_id = models.SmallIntegerField(primary_key=True)
@@ -56,3 +58,19 @@ class PokemonEncounter(models.Model):
     class Meta:
         managed = False
         db_table = 'pokemon_encounters'
+
+class VersionsRegions(models.Model):
+    version_id = models.ForeignKey(Version, on_delete=models.CASCADE, db_column='version_id')
+    region_id = models.ForeignKey(Region, on_delete=models.CASCADE, db_column='region_id')
+    class Meta:
+        managed = False
+        db_table = 'versions_regions'
+
+class GameVersion:
+    def __init__(self, version: Version):
+        self.version = version
+        self.id = version.version_id
+        self.name = version.version_name
+        self.region_list = self.get_regions()
+    def get_regions(self):
+        return regions_sql.get_regions_by_version(self.id)

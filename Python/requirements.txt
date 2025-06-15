@@ -1,4 +1,5 @@
 Django
+django-cors-headers
 djangorestframework
 psycopg2-binary
-sqlparse
+sqlparse    

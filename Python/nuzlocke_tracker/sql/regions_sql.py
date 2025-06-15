@@ -15,3 +15,14 @@ def search_regions(string):
         )
         rows = cursor.fetchall()
         return JsonResponse(rows, safe=False)
+    
+def get_regions_by_version(version_id):
+    with connection.cursor() as cursor:
+        cursor.execute(
+            'SELECT regions.region_name FROM regions ' +
+            'JOIN versions_regions ON regions.region_id = versions_regions.region_id ' +
+            'WHERE version_id = %s;',
+            [version_id]
+        )
+        rows = cursor.fetchall()
+        return JsonResponse(rows, safe=False)

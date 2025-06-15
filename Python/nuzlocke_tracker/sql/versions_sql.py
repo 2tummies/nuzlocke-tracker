@@ -15,3 +15,12 @@ def search_versions(string):
         )
         rows = cursor.fetchall()
         return JsonResponse(rows, safe=False)
+    
+def get_version_by_id(version_id):
+    with connection.cursor() as cursor:
+        cursor.execute(
+            'SELECT version_name FROM versions WHERE version_id = %s',
+            [version_id]
+        )
+        rows = cursor.fetchall()
+        return JsonResponse(rows, safe=False)

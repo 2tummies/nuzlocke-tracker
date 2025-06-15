@@ -68,6 +68,12 @@ class SearchLocationLocations(generics.ListAPIView):
     def get(self, req, **kwargs):
         location_search = kwargs['location_name']
         return locations_sql.search_locations(location_search)
+    
+class GetRegionsByVersion(generics.ListAPIView):
+    serializer_class = GameVersion
+    def get(self, req, **kwargs):
+        version_locations_search = kwargs['version_id']
+        return regions_sql.get_regions_by_version(version_locations_search)
 
 # ListAPIView for endpoints that exclusively use GET
 # ListCreateAPIView for endpoints that use GET and POST

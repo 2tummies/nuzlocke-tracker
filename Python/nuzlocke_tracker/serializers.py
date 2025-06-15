@@ -36,14 +36,7 @@ class PokemonEncounterSerializer(serializers.ModelSerializer):
         model = PokemonEncounter
         fields = ['location', 'pokemon', 'method', 'nat_dex', 'version_exclusive', 'time_of_day']
 
-# class AuthorSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Author
-#         fields = ['name']
-
-# class BookSerializer(serializers.ModelSerializer):
-#     author = AuthorSerializer()
-
-#     class Meta:
-#         model = Book
-#         fields = ['title', 'author']
+class GameVersion(serializers.Serializer):
+    version_id = serializers.IntegerField()
+    version_name = serializers.CharField()
+    region_list = RegionSerializer(many=True)
