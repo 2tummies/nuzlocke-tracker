@@ -9,7 +9,7 @@ class RegionSerializer(serializers.ModelSerializer):
 class VersionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Version
-        fields = ['id', 'name']
+        fields = ['id', 'name', 'generation_num']
 
 class PokemonSerializer(serializers.ModelSerializer):
     class Meta:
@@ -19,7 +19,7 @@ class PokemonSerializer(serializers.ModelSerializer):
 class EncounterMethodSerializer(serializers.ModelSerializer):
     class Meta:
         model = EncounterMethod
-        fields = ['id', 'name', 'nat_dex']
+        fields = ['id', 'name']
 
 class TimeOfDaySerializer(serializers.ModelSerializer):
     class Meta:
@@ -29,7 +29,7 @@ class TimeOfDaySerializer(serializers.ModelSerializer):
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
-        fields = ['id', 'name', 'region']
+        fields = ['id', 'name']
 
 class PokemonEncounterSerializer(serializers.ModelSerializer):
     class Meta:

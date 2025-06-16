@@ -75,6 +75,13 @@ class GetRegionsByVersion(generics.ListAPIView):
         version_locations_search = kwargs['version_id']
         return regions_sql.get_regions_by_version(version_locations_search)
 
+class GetLocationsByVersionRegion(generics.ListAPIView):
+    serializer_class = Location
+    def get(self, req, **kwargs):
+        version_id = kwargs['version_id']
+        region_id = kwargs['region_id']
+        return locations_sql.get_locations_by_version_and_region(version_id, region_id)
+
 # ListAPIView for endpoints that exclusively use GET
 # ListCreateAPIView for endpoints that use GET and POST
 # CreateAPIView for enpoints that exclusively use POST

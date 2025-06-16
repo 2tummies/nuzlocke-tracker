@@ -2,7 +2,7 @@ from django.db import models
 
 from .sql import regions_sql
 
-# Database tables
+# Database Tables
 class Region(models.Model):
     region_id = models.SmallIntegerField(primary_key=True)
     region_name = models.TextField(unique=True)
@@ -13,6 +13,7 @@ class Region(models.Model):
 class Version(models.Model):
     version_id = models.SmallIntegerField(primary_key=True)
     version_name = models.TextField(unique=True)
+    generation_num = models.SmallIntegerField()
     class Meta:
         managed = False
         db_table = 'versions'
@@ -27,7 +28,6 @@ class Pokemon(models.Model):
 class EncounterMethod(models.Model):
     method_id = models.SmallIntegerField(primary_key=True)
     method_name = models.TextField(unique=True)
-    nat_dex = models.BooleanField(blank=True, null=True)
     class Meta:
         managed = False
         db_table = 'encounter_methods'
@@ -42,7 +42,6 @@ class TimeOfDay(models.Model):
 class Location(models.Model):
     location_id = models.SmallIntegerField(primary_key=True)
     location_name = models.TextField()
-    region = models.ForeignKey(Region, models.DO_NOTHING, blank=True, null=True)
     class Meta:
         managed = False
         db_table = 'locations'
@@ -59,13 +58,26 @@ class PokemonEncounter(models.Model):
         managed = False
         db_table = 'pokemon_encounters'
 
+# Combo Tables
 class VersionsRegions(models.Model):
+    pk = models.CompositePrimaryKey('version_id', 'region_id')
     version_id = models.ForeignKey(Version, on_delete=models.CASCADE, db_column='version_id')
     region_id = models.ForeignKey(Region, on_delete=models.CASCADE, db_column='region_id')
     class Meta:
         managed = False
         db_table = 'versions_regions'
 
+class LocationsRegions(models.Model):
+    pk = models.CompositePrimaryKey('location_id', 'region_id')
+    location_id = models.ForeignKey(Location, on_delete=models.CASCADE, db_column='location_id')
+    region_id = models.ForeignKey(Region, on_delete=models.CASCADE, db_column='region_id')
+    game_exclusive_id = models.SmallIntegerField()
+    gen_exclusive_id = models.SmallIntegerField()
+    class Meta:
+        managed = False
+        db_table = 'locations_regions'
+
+# Wrapper Classes
 class GameVersion:
     def __init__(self, version: Version):
         self.version = version

@@ -19,7 +19,7 @@ def search_regions(string):
 def get_regions_by_version(version_id):
     with connection.cursor() as cursor:
         cursor.execute(
-            'SELECT regions.region_name FROM regions ' +
+            'SELECT regions.region_id, regions.region_name FROM regions ' +
             'JOIN versions_regions ON regions.region_id = versions_regions.region_id ' +
             'WHERE version_id = %s;',
             [version_id]

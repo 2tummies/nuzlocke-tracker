@@ -9,6 +9,7 @@ urlpatterns = [
     path('versions/', views.GetAllVersions.as_view(), name='get-versions'),
     path('versions/<str:version_name>', views.SearchVersions.as_view(), name='search-versions'),
     path('versions/<int:version_id>/regions/', views.GetRegionsByVersion.as_view(), name='version-regions'),
+    path('versions/<int:version_id>/regions/<int:region_id>/locations', views.GetLocationsByVersionRegion.as_view(), name='regions-by-version-region'),
     path('encounter_methods/', views.GetAllEncounterMethods.as_view(), name='list-encounter-methods'),
     path('encounter_methods/<str:method_name>', views.SearchEncounterMethods.as_view(), name='search-encounter-methods'),
     path('times_of_day/', views.GetAllTimesOfDay.as_view(), name='list-times-of-day'),
