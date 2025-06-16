@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS pokemon_encounters;
 DROP TABLE IF EXISTS versions_regions;
+DROP TABLE IF EXISTS locations_regions;
 DROP TABLE IF EXISTS versions;
 DROP TABLE IF EXISTS time_of_day;
 DROP TABLE IF EXISTS locations;
@@ -14,7 +15,8 @@ CREATE TABLE regions (
 
 CREATE TABLE versions (
         version_id SMALLINT PRIMARY KEY,
-        version_name TEXT UNIQUE NOT NULL
+        version_name TEXT UNIQUE NOT NULL,
+        generation_num SMALLINT NOT NULL
 );
 
 CREATE TABLE versions_regions (
@@ -26,14 +28,21 @@ CREATE TABLE versions_regions (
 
 CREATE TABLE locations (
         location_id SMALLINT PRIMARY KEY,
-        location_name TEXT NOT NULL,
-        region_id SMALLINT REFERENCES regions
+        location_name TEXT NOT NULL
+);
+
+CREATE TABLE locations_regions (
+        location_id SMALLINT REFERENCES locations,
+        region_id SMALLINT REFERENCES regions,
+        game_exclusive_id SMALLINT,
+        gen_exclusive_id SMALLINT,
+        
+        PRIMARY KEY (location_id, region_id)
 );
 
 CREATE TABLE encounter_methods (
         method_id SMALLINT PRIMARY KEY,
-        method_name TEXT UNIQUE NOT NULL,
-        nat_dex BOOLEAN
+        method_name TEXT UNIQUE NOT NULL
 );
 
 CREATE TABLE pokemon (
