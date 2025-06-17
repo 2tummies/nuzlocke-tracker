@@ -51,9 +51,9 @@ class PokemonEncounter(models.Model):
     location = models.ForeignKey(Location, models.DO_NOTHING)
     pokemon = models.ForeignKey(Pokemon, models.DO_NOTHING)
     method = models.ForeignKey(EncounterMethod, models.DO_NOTHING)
-    nat_dex = models.BooleanField(blank=True, null=True)
     version_exclusive = models.ForeignKey(Version, models.DO_NOTHING, blank=True, null=True)
     time_of_day = models.ForeignKey(TimeOfDay, models.DO_NOTHING, blank=True, null=True)
+    percent_encounter = models.SmallIntegerField()
     class Meta:
         managed = False
         db_table = 'pokemon_encounters'

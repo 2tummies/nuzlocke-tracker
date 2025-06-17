@@ -59,9 +59,9 @@ CREATE TABLE pokemon_encounters (
         location_id SMALLINT REFERENCES locations,
         pokemon_id SMALLINT REFERENCES pokemon,
         method_id SMALLINT REFERENCES encounter_methods,
-        nat_dex BOOLEAN,
         version_exclusive_id SMALLINT REFERENCES versions,
         time_of_day_id SMALLINT REFERENCES time_of_day,
+        percent_encounter SMALLINT NOT NULL,
         
         PRIMARY KEY(location_id, pokemon_id, method_id)
 );

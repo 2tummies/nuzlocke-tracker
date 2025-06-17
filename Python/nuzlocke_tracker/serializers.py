@@ -34,7 +34,7 @@ class LocationSerializer(serializers.ModelSerializer):
 class PokemonEncounterSerializer(serializers.ModelSerializer):
     class Meta:
         model = PokemonEncounter
-        fields = ['location', 'pokemon', 'method', 'nat_dex', 'version_exclusive', 'time_of_day']
+        fields = ['location', 'pokemon', 'method', 'version_exclusive', 'time_of_day', 'percent_encounter']
 
 class GameVersion(serializers.Serializer):
     version_id = serializers.IntegerField()
