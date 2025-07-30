@@ -5,8 +5,7 @@ import PageHeader from "./PageHeader"
 const App = () => {
   return (
     <>
-      {/* TODO: add component here, use this format ' <ComponentName /> ' */}
-      {<PageHeader> </PageHeader>}
+      <PageHeader />
     </>
   )
 }
